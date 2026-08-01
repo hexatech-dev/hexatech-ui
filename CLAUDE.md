@@ -20,6 +20,23 @@ As of this package's creation, no product repo consumes it yet — the reuse rol
 4. **One file per component, one `exports` subpath per file** (e.g. `./button` → `dist/components/button.js`) — no barrel `index.ts`. Adding a component means: new file in `src/components/`, new entry in `tsup.config.ts`'s glob (already covers `src/components/*.tsx`, so usually no change needed there), new subpath in `package.json`'s `exports` map.
 5. **Radix/cva/clsx/tailwind-merge/lucide-react are regular `dependencies` in `package.json`**, not bundled — tsup automatically excludes anything listed there from the bundle, so they resolve from the consumer's own `node_modules`. If a new component needs a new Radix package (or similar), add it to `dependencies`, not just import it — otherwise it silently gets bundled in instead of externalized.
 
+## `toaster`/`use-toast` are a singleton store, not pure presentation
+
+Unlike every other component here, `toaster.tsx` reads from `use-toast.ts`'s
+module-scoped `memoryState`/`listeners` — an actual store, not just markup.
+A consumer that re-exports this package's `toaster.tsx` wholesale while its
+own existing call sites still dispatch to their **own** local `use-toast`
+copy ends up with two disconnected stores: toasts fire but never render,
+since the mounted `<Toaster />` is listening to a different instance than
+the one being dispatched to. Hit for real in sportik (see its `CLAUDE.md`).
+
+If a consumer already has its own toast call sites, keep its `toaster.tsx`
+**local** — importing its own `useToast` plus this package's presentational
+`Toast`/`ToastClose`/`ToastTitle`/etc. from `./toast` (which have no internal
+state, safe to share as-is). Only a **new** consumer with zero existing
+`toast(...)` call sites can safely adopt this package's `toaster`/`use-toast`
+wholesale as its one and only store.
+
 ## Extraction criteria (for adding more components later)
 
 Only pull a component from a product (currently sportik) into this package if it's genuinely token-only and free of that product's domain logic or hardcoded branding — verify by reading the source file, don't assume. Components with embedded business logic, app-shell/nav specifics (e.g. a full `Sidebar`), or that only have one real consumer so far and no proven-generic API (e.g. a `calendar`/`stepper`/`form` wrapper) should wait for a second real consumer before extraction — don't extract speculatively.
