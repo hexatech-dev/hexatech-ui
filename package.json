@@ -37,6 +37,10 @@
       "types": "./dist/components/alert.d.ts",
       "default": "./dist/components/alert.js"
     },
+    "./alert-action-dialog": {
+      "types": "./dist/components/alert-action-dialog.d.ts",
+      "default": "./dist/components/alert-action-dialog.js"
+    },
     "./alert-dialog": {
       "types": "./dist/components/alert-dialog.d.ts",
       "default": "./dist/components/alert-dialog.js"
@@ -76,6 +80,10 @@
     "./collapsible": {
       "types": "./dist/components/collapsible.d.ts",
       "default": "./dist/components/collapsible.js"
+    },
+    "./confirm-dialog": {
+      "types": "./dist/components/confirm-dialog.d.ts",
+      "default": "./dist/components/confirm-dialog.js"
     },
     "./dialog": {
       "types": "./dist/components/dialog.d.ts",

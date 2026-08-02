@@ -11,7 +11,15 @@ export type AuthLayoutFeature = {
   description: string;
 };
 
+export type AuthLayoutBrand = {
+  icon: React.ReactNode;
+  name: string;
+  subtitle?: string;
+};
+
 export type AuthLayoutStory = {
+  /** Rendered above eyebrow/title as an icon-tile + name (+ optional subtitle). */
+  brand?: AuthLayoutBrand;
   eyebrow?: string;
   title: string;
   description: string;
@@ -50,6 +58,21 @@ export function AuthLayout({ story, legal, children, className }: AuthLayoutProp
   return (
     <div className={cn("min-h-screen lg:grid lg:grid-cols-2", className)}>
       <div className="hidden flex-col justify-center gap-10 bg-gradient-brand p-12 text-white lg:flex">
+        {story.brand ? (
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white/15 text-white">
+              {story.brand.icon}
+            </span>
+            <div className="flex flex-col">
+              <span className="font-semibold">{story.brand.name}</span>
+              {story.brand.subtitle ? (
+                <span className="text-xs text-white/70">
+                  {story.brand.subtitle}
+                </span>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
         <div className="max-w-md space-y-4">
           {story.eyebrow ? (
             <span className="text-sm font-medium uppercase tracking-wide opacity-80">
