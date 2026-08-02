@@ -85,6 +85,8 @@ export function AuthLayout({ story, legal, children, className }: AuthLayoutProp
             {termsHref ? (
               <a
                 href={termsHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:text-foreground"
               >
                 Terms
@@ -94,6 +96,8 @@ export function AuthLayout({ story, legal, children, className }: AuthLayoutProp
             {privacyHref ? (
               <a
                 href={privacyHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="underline underline-offset-2 hover:text-foreground"
               >
                 Privacy Policy
