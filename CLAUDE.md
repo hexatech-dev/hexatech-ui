@@ -53,3 +53,14 @@ npm run check   # tsc --noEmit
 ## Versioning
 
 Same model as `hexatech-shared`: bump deliberately, tag, no auto-update. `npm version <patch|minor|major> && git push --follow-tags`, then update the pin in whichever consumer needs the change, and update the version matrix in `../hexatech-shared/README.md`.
+
+**Verify locally before bumping/pushing/rolling out — don't design in production.** Every consumer is a separate git repo pinned to an exact tag (no registry, no CI, no auto-update — see `README.md`), so each version bump means: push a tag, then manually update the pin + `npm install` + clear Vite's `node_modules/.vite` cache + restart the dev server, **per consumer**. That's real ceremony, and paying it once per finished change is fine — paying it three times because a component's design was still being iterated on live is not (this happened for real with `toast.tsx`: three version bumps and three full rollouts in one sitting for what should've been one). Iterate locally first:
+
+```bash
+npm run build && npm pack        # produces hexatech-dev-ui-X.Y.Z.tgz
+cd ../<one-test-consumer>
+npm install ../hexatech-ui/hexatech-dev-ui-X.Y.Z.tgz   # real copy, not a symlink — avoids
+                                                          # npm link's duplicate-React risk (rule #3)
+```
+
+Repeat edit → `npm run build && npm pack` → reinstall the tarball → look at it, for as many rounds as needed against one representative consumer. Only once it's actually settled: revert that consumer's `package.json`/`package-lock.json` (`git checkout` them), then do the real `commit → npm version → push --follow-tags → bump the pin in every consumer that needs it → npm install → clear `.vite` caches → restart dev servers` sequence — once, not per iteration.

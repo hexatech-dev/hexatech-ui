@@ -180,6 +180,10 @@
     "./user-avatar": {
       "types": "./dist/components/user-avatar.d.ts",
       "default": "./dist/components/user-avatar.js"
+    },
+    "./google-icon": {
+      "types": "./dist/icons/GoogleIcon.d.ts",
+      "default": "./dist/icons/GoogleIcon.js"
     }
   },
   "files": [

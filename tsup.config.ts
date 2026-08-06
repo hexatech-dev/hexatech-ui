@@ -7,6 +7,7 @@ export default defineConfig({
     "src/theme/*.tsx",
     "src/hooks/*.ts",
     "src/components/*.tsx",
+    "src/icons/*.tsx",
   ],
   format: ["esm"],
   dts: true,
@@ -21,5 +22,10 @@ export default defineConfig({
   // need to work). esbuild preserves a leading "use client" directive on
   // each entry file automatically — every component/theme file here starts
   // with one, so no extra config is needed for that.
-  external: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime"],
+  external: [
+    "react",
+    "react-dom",
+    "react/jsx-runtime",
+    "react/jsx-dev-runtime",
+  ],
 });
