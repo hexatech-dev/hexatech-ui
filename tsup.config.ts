@@ -27,5 +27,11 @@ export default defineConfig({
     "react-dom",
     "react/jsx-runtime",
     "react/jsx-dev-runtime",
+    // Optional peers — only `use-app-update-check.ts` imports these, and
+    // only consumers that import that hook need them installed at all.
+    "@capacitor/app",
+    "@capacitor/core",
+    "@capacitor/filesystem",
+    "@capacitor-community/file-opener",
   ],
 });
