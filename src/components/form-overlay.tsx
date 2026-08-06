@@ -164,7 +164,7 @@ function OverlayFooter({
       <div
         className={cn(
           "shrink-0 border-t border-border/80 bg-background px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]",
-          !flush && "flex justify-end",
+          !flush && "flex justify-end gap-2",
           footerClassName,
         )}
       >
