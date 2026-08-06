@@ -77,14 +77,29 @@ on a laptop and on Vercel.
 
 One subpath export per component (e.g. `@hexatech-dev/ui/button`,
 `@hexatech-dev/ui/dialog`) — no barrel import, so consumers only pull in
-what they use. Full list: `accordion`, `alert`, `alert-dialog`,
-`aspect-ratio`, `avatar`, `badge`, `breadcrumb`, `button`, `card`,
-`checkbox`, `collapsible`, `dialog`, `dropdown-menu`, `input`, `label`,
-`navigation-menu`, `pagination`, `popover`, `radio-group`, `scroll-area`,
-`select`, `separator`, `sheet`, `skeleton`, `spinner`, `switch`, `table`,
-`tabs`, `textarea`, `toast` + `toaster` (+ `use-toast` hook), `toggle`,
-`toggle-group`, `tooltip`. Plus `cn` (the `clsx`+`tailwind-merge` helper
-every component uses for `className` merging).
+what they use. Full list: `accordion`, `alert`, `alert-action-dialog`,
+`alert-dialog`, `aspect-ratio`, `auth-layout`, `avatar`, `badge`,
+`breadcrumb`, `button`, `card`, `checkbox`, `collapsible`, `confirm-dialog`,
+`data-pagination`, `dialog`, `dropdown-menu`, `empty-state`,
+`error-boundary`, `error-fallback`, `error-state`, `form-overlay`, `input`,
+`label`, `navigation-menu`, `network-status-badge`, `pagination`, `popover`,
+`radio-group`, `scroll-area`, `select`, `separator`, `sheet`, `skeleton`,
+`spinner`, `switch`, `table`, `tabs`, `textarea`, `toast` + `toaster`
+(+ `use-toast` hook), `toggle`, `toggle-group`, `tooltip`, `update-banner`
+(+ `use-app-update-check` hook), `user-avatar`, `google-icon`. Plus `cn`
+(the `clsx`+`tailwind-merge` helper every component uses for `className`
+merging), `chunk-error`, `use-online-status`, `use-mobile`.
+
+**`update-banner` + `use-app-update-check`**: a non-blocking, dismissible
+bottom banner for nudging users toward a newer native build, paired with a
+headless hook that checks a `{ data: { versionCode } }` endpoint against
+`CapacitorApp.getInfo().build`, downloads the APK with progress, and hands
+it to the native installer via `FileOpener`. Native-only (no-ops on web) and
+the only export here with optional Capacitor peer dependencies
+(`@capacitor/app`, `@capacitor/core`, `@capacitor/filesystem`,
+`@capacitor-community/file-opener`) — only a consumer that imports
+`use-app-update-check` needs them installed. First adopted by sportik,
+replacing its previous blocking modal-on-launch dialog.
 
 Every component file starts with `"use client"` — safe to import from a
 Next.js Server Component tree (App Router) as well as a plain Vite SPA.
