@@ -83,7 +83,7 @@ what they use. Full list: `accordion`, `alert`, `alert-action-dialog`,
 `data-pagination`, `dialog`, `dropdown-menu`, `empty-state`,
 `error-boundary`, `error-fallback`, `error-state`, `form-overlay`, `input`,
 `label`, `navigation-menu`, `network-status-badge`, `pagination`, `popover`,
-`radio-group`, `scroll-area`, `select`, `separator`, `sheet`, `skeleton`,
+`qr-code`, `radio-group`, `scroll-area`, `select`, `separator`, `sheet`, `skeleton`,
 `spinner`, `switch`, `table`, `tabs`, `textarea`, `toast` + `toaster`
 (+ `use-toast` hook), `toggle`, `toggle-group`, `tooltip`, `update-banner`
 (+ `use-app-update-check` hook), `user-avatar`, `google-icon`. Plus `cn`

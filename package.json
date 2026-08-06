@@ -157,6 +157,10 @@
       "types": "./dist/components/popover.d.ts",
       "default": "./dist/components/popover.js"
     },
+    "./qr-code": {
+      "types": "./dist/components/qr-code.d.ts",
+      "default": "./dist/components/qr-code.js"
+    },
     "./radio-group": {
       "types": "./dist/components/radio-group.d.ts",
       "default": "./dist/components/radio-group.js"
@@ -243,12 +247,12 @@
     "check": "tsc --noEmit"
   },
   "peerDependencies": {
-    "react": "^18.3.0 || ^19.0.0",
-    "react-dom": "^18.3.0 || ^19.0.0",
+    "@capacitor-community/file-opener": "^8.0.0",
     "@capacitor/app": "^8.0.0",
     "@capacitor/core": "^8.0.0",
     "@capacitor/filesystem": "^8.0.0",
-    "@capacitor-community/file-opener": "^8.0.0"
+    "react": "^18.3.0 || ^19.0.0",
+    "react-dom": "^18.3.0 || ^19.0.0"
   },
   "peerDependenciesMeta": {
     "@capacitor/app": {
@@ -290,6 +294,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.14.0",
+    "qrcode.react": "^4.2.0",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
