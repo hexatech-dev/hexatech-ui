@@ -1,6 +1,6 @@
 {
   "name": "@hexatech-dev/ui",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Shared themeable UI components for Hexatech products",
   "license": "UNLICENSED",
   "private": false,
@@ -251,10 +251,18 @@
     "@capacitor-community/file-opener": "^8.0.0"
   },
   "peerDependenciesMeta": {
-    "@capacitor/app": { "optional": true },
-    "@capacitor/core": { "optional": true },
-    "@capacitor/filesystem": { "optional": true },
-    "@capacitor-community/file-opener": { "optional": true }
+    "@capacitor/app": {
+      "optional": true
+    },
+    "@capacitor/core": {
+      "optional": true
+    },
+    "@capacitor/filesystem": {
+      "optional": true
+    },
+    "@capacitor-community/file-opener": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
